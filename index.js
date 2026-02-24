@@ -1,6 +1,6 @@
 import express from 'express';
-import dbConnect from './config/db';
-import userRoute from './routes/userroute';
+import dbConnect from './config/db.js';
+import userRoute from './routes/userroute.js';
 const app = express();
 const startServer = async () => {
     await dbConnect();
@@ -11,3 +11,4 @@ const startServer = async () => {
 app.use(express.json());
 // dbConnect();
 app.use("/api/users", userRoute);
+startServer();
