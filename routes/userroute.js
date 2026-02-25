@@ -1,8 +1,10 @@
 import {addUser, deleteUser, showUser, login} from '../controllers/usercontroller.js';
 import express from 'express';
+import { authenticate,authorize } from '../middleware/auth.js';
+// import { addProduct, showProduct } from '../controllers/productcontroller.js';
 const userRoute = express.Router();
-userRoute.get("/showUsers",showUser);
-userRoute.post("/addUser",addUser);
-userRoute.delete("/deleteUser/:id",deleteUser);
+userRoute.get("/",authenticate,authorize("admin"),showUser);
+userRoute.post("/signup",addUser);
+userRoute.delete("/:id",authenticate,authorize("admin"),deleteUser);
 userRoute.post("/login", login);
 export default userRoute;

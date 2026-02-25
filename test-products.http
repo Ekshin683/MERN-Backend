@@ -1,0 +1,25 @@
+### Test Product Endpoints
+
+### Get all products
+GET http://localhost:8080/api/products/showProducts
+
+### Add a new product
+POST http://localhost:8080/api/products/addProduct
+Content-Type: application/json
+
+{
+  "name": "Laptop",
+  "price": 999.99
+}
+
+### Add another product
+POST http://localhost:8080/api/products/addProduct
+Content-Type: application/json
+
+{
+  "name": "Mouse",
+  "price": 25.50
+}
+
+### Delete a product (replace PRODUCT_ID with actual ID)
+DELETE http://localhost:8080/api/products/deleteProduct/PRODUCT_ID

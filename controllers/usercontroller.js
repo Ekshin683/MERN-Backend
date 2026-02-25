@@ -1,5 +1,7 @@
 import userModel from '../config/usermodel.js';
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+const SECRET = "hello"
 export const addUser = async (req,res) => {
     const body = req.body;
     const hashPassword = await bcrypt.hash(body.password,10);
@@ -21,7 +23,8 @@ export const login = async (req,res) =>{
     if(found){
         const checkpassword = await bcrypt.compare(password,found.password);
         if(checkpassword){
-            res.status(200).json({message:"Login Successfull"});
+            const token = jwt.sign({id:found._id, role: found.role}, SECRET, {expiresIn:"1h"});
+            res.status(200).json({message:"Login Successfull", token:token});
         }else{
             res.status(401).json({message:"Invalid Password"});
         }
