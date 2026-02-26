@@ -7,4 +7,5 @@ userRoute.get("/",authenticate,authorize("admin"),showUser);
 userRoute.post("/signup",addUser);
 userRoute.delete("/:id",authenticate,authorize("admin"),deleteUser);
 userRoute.post("/login", login);
+// userRoute.patch("/update/:id", )
 export default userRoute;

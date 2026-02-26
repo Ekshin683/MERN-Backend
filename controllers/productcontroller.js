@@ -13,3 +13,11 @@ export const deleteProduct = async(req,res) => {
     const result = await productModel.findByIdAndDelete(req.params.id);
     res.json(result);
 }
+export const updateProduct = async(req,res) => {
+    const id = req.params.id;
+    const body = req.body;
+    if(id){
+        const result = await productModel.findByIdAndUpdate(id, body, { new: true });
+        res.json(result);
+    }
+}
